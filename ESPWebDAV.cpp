@@ -363,7 +363,7 @@ void ESPWebDAV::handleGet(ResourceType resource, bool isGet)	{
 
 		// send the file
 		while(rFile.available())	{
-			yield()
+			yield();
 			// SD read speed ~ 17sec for 4.5MB file
 			int numRead = rFile.read(buf, sizeof(buf));
 			client.write(buf, numRead);
@@ -429,7 +429,7 @@ void ESPWebDAV::handlePut(ResourceType resource)	{
 
 		// read data from stream and write to the file
 		while(numRemaining > 0)	{
-			yield()
+			yield();
 			size_t numToRead = (numRemaining > WRITE_BLOCK_CONST) ? WRITE_BLOCK_CONST : numRemaining;
 			size_t numRead = readBytesWithTimeout(buf, sizeof(buf), numToRead);
 			if(numRead == 0)
